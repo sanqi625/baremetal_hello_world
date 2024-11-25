@@ -1,0 +1,12 @@
+CMakeFiles/dhrystone.elf.dir/hal/toy/trap_handler.c.obj: \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/trap_handler.c \
+ /data/usr/qijiahuan/baremetal_hello_world/lib/print/print.h \
+ /data/usr/qijiahuan/baremetal_hello_world/lib/print/printf.h \
+ /tools/software/riscv/riscv32-unknown-elf-gcc/lib/gcc/riscv32-unknown-elf/13.2.0/include/stdarg.h \
+ /tools/software/riscv/riscv32-unknown-elf-gcc/lib/gcc/riscv32-unknown-elf/13.2.0/include/stddef.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/global.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/trap_handler.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_asm.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/trap.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_encoding.h \
+ /data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_encoding.h

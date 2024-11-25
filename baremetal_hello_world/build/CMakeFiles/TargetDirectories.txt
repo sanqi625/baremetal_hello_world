@@ -1,0 +1,10 @@
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/hello.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/csr.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/fp_hello.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/trap.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/interrupt.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/dhrystone.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/coremark.elf.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/test.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/edit_cache.dir
+/data/usr/qijiahuan/baremetal_hello_world/build/CMakeFiles/rebuild_cache.dir

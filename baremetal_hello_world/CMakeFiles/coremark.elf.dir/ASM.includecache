@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/data/usr/qijiahuan/baremetal_hello_world/hal/riscv/strcmp.S
+
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_asm.h
+
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_encoding.h
+
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/trap.h
+riscv_encoding.h
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_encoding.h
+
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/startup.S
+include/riscv_asm.h
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_asm.h
+include/trap.h
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/trap.h
+include/riscv_encoding.h
+/data/usr/qijiahuan/baremetal_hello_world/hal/toy/include/riscv_encoding.h
+

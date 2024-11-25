@@ -1,0 +1,32 @@
+#!/bin/csh
+
+# 检查参数是否正确
+#if ($#argv != 1) then
+#    echo "usage: $0 <elf/file/path>"
+#    exit 1
+#endif
+
+# 设置QEMU路径和其他参数
+# set simv_path = "/home/liuyunqi/trees/toy_scalar_dev/work/rtl_compile/simv"
+set simv_path = "/data/usr/liuyunqi/tree/toy_scalar/work/rtl_compile/simv"
+#set simv_path = "/data/usr/liuyunqi/tree/toy_stable/work/rtl_compile/simv"
+#set simv_args = "-nographic -m 2048 -smp 1 -M scalar_toy"
+#set trace_args = " -accel tcg,one-insn-per-tb=on -d cpu,exec"
+#set trace_args = ""
+#set log_args = "-D log%d"
+#set log_args = "-D $1.qtoy.trace"
+#set device_args = "-device loader,cpu-num=0,file=$1"
+
+
+# 使用sed去掉后缀
+set fwo = `echo $1 | sed 's/\.elf$//'`
+
+echo $fwo
+
+# 构建完整的命令
+set full_command = "$simv_path -exitstatus +TIMEOUT=0 +HEX=$fwo.itcm.hex +DATA_HEX=$fwo.dtcm.hex"
+
+echo $full_command
+
+# 执行命令
+eval $full_command

@@ -1,0 +1,274 @@
+//#include "uart.h"
+#include "print.h"
+
+int a = 1;
+
+//uart_element_t uart;
+//void _putchar(char character) {
+//    uart_put_char(&uart, character);
+//}
+
+int main(void) {
+    //uart_init(&uart, UART_BASE_ADDR);
+
+    int mstatus_csr1;
+    int mstatus_csr2;
+    int csr_in=0x8;
+
+    //asm(
+    //    //"csrrwi %0,mstatus,0x8\n\t"
+    //    //"csrrwi %1,mstatus\n\t"
+    //    "csrr %0,mstatus\n\t"
+    //    "csrw mstatus,%3\n\t"
+    //    "csrr %1,mstatus\n\t"
+    //    "csrr %2,mcause\n\t"
+    //    :"=r"(mstatus_csr1),"=r"(mstatus_csr2),"=r"(mstatus_csr3)
+    //    :"r"(csr_in)
+    //);
+
+    printf("/*=================TEST mstatus==================*/\n");
+//test mstatus
+    asm(
+        "csrr %[out1],mstatus\n\t"
+        "csrw mstatus,%[in1]\n\t"
+        "csrr %[out2],mstatus\n\t"
+        :[out1]"=r"(mstatus_csr1),[out2]"=r"(mstatus_csr2)
+        :[in1]"r"(csr_in)
+    );
+
+    printf("mstatus value is = %x before write\n",mstatus_csr1);
+    printf("mstatus value is = %x after write\n",mstatus_csr2);
+    //printf("mcause value is = %x\n",mstatus_csr3);
+
+//test mstatus csr imm
+
+    int mstatus_csr3;
+    int mstatus_csr4;
+    int mstatus_csr5;
+
+    asm(
+        "csrr %[out0],mstatus\n\t"
+        "csrci mstatus,0x1f\n\t"
+        "csrr %[out2],mstatus\n\t"  //clear
+        "csrwi mstatus,0x8\n\t"  //write
+        "csrsi mstatus,0x2\n\t" //set
+        "csrr %[out1],mstatus\n\t"
+        :[out0]"=r"(mstatus_csr3),[out1]"=r"(mstatus_csr4),[out2]"=r"(mstatus_csr5)
+    );
+
+    printf("mstatus value is = %x before clear\n",mstatus_csr3);
+    printf("mstatus value is = %x after clear\n",mstatus_csr5);
+    printf("mstatus value is = %x after rewrite and set\n",mstatus_csr4);
+    
+//test misa
+    int misa_val;
+
+    asm(
+        "csrr %[out1],misa\n\t"
+        :[out1]"=r"(misa_val)
+    );
+
+    printf("misa value is = %x\n",misa_val);
+
+//test MVENDORID
+    int mvendorid_val;
+
+    asm(
+        "csrr %[out1],mvendorid\n\t"
+        :[out1]"=r"(mvendorid_val)
+    );
+
+    printf("mvendorid value is = %x\n",mvendorid_val);
+
+//test MEDELEG
+/*
+    int mvedeleg_val;
+
+    asm(
+        "csrr %[out1],mvendorid\n\t"
+        :[out1]"r="(mvedeleg_val)
+    );
+
+    printf("mvendorid value is = %x\n",mvedeleg_val);  
+    */
+
+
+/*=========================================================*/
+/*=================Unprivileged Counter/Timers==================*/
+/*=========================================================*/
+//test cycle
+    int cycle_val;
+
+    asm(
+        "csrr %[out1],cycle\n\t"
+        :[out1]"=r"(cycle_val)
+    );
+
+    printf("cycle_val value is = %x\n",cycle_val);
+
+//test cycleh
+    int cycleh_val;
+
+    asm(
+        "csrr %[out1],cycleh\n\t"
+        :[out1]"=r"(cycleh_val)
+    );
+
+    printf("cycleh_val value is = %x\n",cycleh_val);
+
+//test time
+    int time_val;
+
+    asm(
+        "csrr %[out1],time\n\t"
+        :[out1]"=r"(time_val)
+    );
+
+    printf("time_val value is = %x\n",time_val);
+
+//test timeh
+    int timeh_val;
+
+    asm(
+        "csrr %[out1],timeh\n\t"
+        :[out1]"=r"(timeh_val)
+    );
+
+    printf("timeh_val value is = %x\n",timeh_val);
+
+
+//test instret
+    int instret_val;
+
+    asm(
+        "csrr %[out1],instret\n\t"
+        :[out1]"=r"(instret_val)
+    );
+
+    printf("instret_val value is = %x\n",instret_val);
+
+//test timeh
+    int instreth_val;
+
+    asm(
+        "csrr %[out1],instreth\n\t"
+        :[out1]"=r"(instreth_val)
+    );
+
+    printf("instreth_val value is = %x\n",instreth_val);
+
+
+/*=========================================================*/
+/*=================Machine Counter/Timers==================*/
+/*=========================================================*/
+
+//test mcycle
+    int mcycle_val;
+
+    asm(
+        "csrr %[out1],mcycle\n\t"
+        :[out1]"=r"(mcycle_val)
+    );
+
+    printf("mcycle_val value is = %x\n",mcycle_val);
+
+//test mcycleh
+    int mcycleh_val;
+
+    asm(
+        "csrr %[out1],mcycleh\n\t"
+        :[out1]"=r"(mcycleh_val)
+    );
+
+    printf("mcycleh_val value is = %x\n",mcycleh_val);
+
+//test minstret
+    int minstret_val;
+
+    asm(
+        "csrr %[out1],minstret\n\t"
+        :[out1]"=r"(minstret_val)
+    );
+
+    printf("minstret value is = %x\n",minstret_val);
+
+//test mcycleh
+    int minstreth_val;
+
+    asm(
+        "csrr %[out1],minstreth\n\t"
+        :[out1]"=r"(minstreth_val)
+    );
+
+    printf("minstreth value is = %x\n",minstreth_val);
+
+/*=========================================================*/
+/*=================exception==================*/
+/*=========================================================*/
+    
+    printf("/*=================TEST exception==================*/\n");
+    
+    int mstatus_val;
+    int mie_val;
+    int mtvec_val;
+    int mepc_val;
+    int mcause_val;
+    int mtval_val;
+    int mip_val;
+    int mscratch_val;
+    int mstatus_ecall_val;
+    int mtvec_base0 = 0x8;
+    int mtvec_base1 = 0xc;
+    int mtvec_read;
+
+    asm(
+        "csrr %[mstatus_out],mstatus\n\t"
+        "csrr %[mie_out],mie\n\t"
+        "csrr %[mtvec_out],mtvec\n\t"
+        "csrr %[mepc_out],mepc\n\t"
+        "csrr %[mcause_out],mcause\n\t"
+        "csrr %[mtval_out],mtval\n\t"
+        "csrr %[mip_out],mip\n\t"
+        "csrr %[mscratch_out],mscratch\n\t"
+        //"ecall \n\t"
+        //"ebreak \n\t"
+        //"mret \n\t"
+        "lui x5,0x8\n\t"
+        "addi x6,x5,0xc\n\t"
+        "csrw mtvec,x6\n\t"
+        "ecall \n\t"
+        //"csrr %[mstatus_ecall_out],mstatus\n\t"
+        "csrr %[mtvec_set_out],mtvec\n\t"
+        :[mstatus_out]"=r"(mstatus_val),
+        [mie_out]"=r"(mie_val),
+        [mtvec_out]"=r"(mtvec_val),
+        [mepc_out]"=r"(mepc_val),
+        [mcause_out]"=r"(mcause_val),
+        [mtval_out]"=r"(mtval_val),
+        [mip_out]"=r"(mip_val),
+        [mscratch_out]"=r"(mscratch_val),
+        //[mstatus_ecall_out]"=r"(mstatus_ecall_val),
+        [mtvec_set_out]"=r"(mtvec_read)
+        //:[base0]"r"(mtvec_base0),
+        // [base1]"r"(mtvec_base1)
+    );
+
+    printf("mstatus_val value is = %x\n",mstatus_val);
+    printf("mie_val value is = %x\n",mie_val);
+    printf("mtvec_val value is = %x\n",mtvec_val);
+    printf("mepc_val value is = %x\n",mepc_val);
+    printf("mcause_val value is = %x\n",mcause_val);
+    printf("mtval_val value is = %x\n",mtval_val);
+    printf("mip_val value is = %x\n",mip_val);
+    printf("mscratch_val value is = %x\n",mscratch_val);
+
+    printf("/*=After ecall=*/\n");
+    printf("mtvec value is = %x\n",mtvec_read);
+    //printf("mstatus_ecall_val value is = %x\n",mstatus_ecall_val);
+
+    printf("/*=================TEST END==================*/\n");
+    //printf("hello world\n");
+    //printf("hello toy\n");
+    //printf("%d\n", a);
+    return 0;
+} 
